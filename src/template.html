@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{meta.title}}</title>
+<meta name="description" content="{{meta.description}}">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="canonical" href="{{url}}">
+<link rel="alternate" hreflang="en" href="https://evolvingrealitygames.com/">
+<link rel="alternate" hreflang="tr" href="https://evolvingrealitygames.com/tr/">
+<link rel="alternate" hreflang="x-default" href="https://evolvingrealitygames.com/">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/img/icon-256.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Evolving Reality Games">
+<meta property="og:title" content="{{meta.title}}">
+<meta property="og:description" content="{{meta.description}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:image" content="https://evolvingrealitygames.com/assets/img/og.png">
+<meta property="og:locale" content="{{meta.locale}}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/assets/fonts/barlow-semi-condensed-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Evolving Reality Games","alternateName":"ERG","url":"https://evolvingrealitygames.com/","logo":"https://evolvingrealitygames.com/assets/img/icon-512.png","founder":{"@type":"Person","name":"Furkan Ergüldürenler"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">{{a11y.skip}}</a>
+
+<header class="top">
+  <a class="brand" href="{{home}}" aria-label="Evolving Reality Games">
+    <img src="/assets/img/erg_wordmark.png" alt="ERG" width="96" height="30">
+  </a>
+  <nav aria-label="{{a11y.nav}}">
+    <a href="#games">{{nav.games}}</a>
+    <a href="#studio">{{nav.studio}}</a>
+    <a class="lang" href="{{alt.href}}" hreflang="{{alt.lang}}" lang="{{alt.lang}}">{{alt.label}}</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="hero-stage">
+      <video class="hero-video" muted playsinline preload="auto" poster="/assets/img/erg_splash_last.jpg"
+             width="1280" height="720" aria-hidden="true">
+        <source src="/assets/video/erg_splash.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-copy">
+      <h1><span class="sr">Evolving Reality Games. </span>{{hero.title}}</h1>
+      <p>{{hero.lead}}</p>
+      <a class="btn" href="#games">{{hero.cta}}</a>
+    </div>
+  </section>
+
+  <section class="evo" aria-label="{{evo.label}}">
+    <ol>
+      <li class="e"><i aria-hidden="true"></i><b>{{evo.e.t}}</b><span>{{evo.e.d}}</span></li>
+      <li class="r"><i aria-hidden="true"></i><b>{{evo.r.t}}</b><span>{{evo.r.d}}</span></li>
+      <li class="g"><i aria-hidden="true"></i><b>{{evo.g.t}}</b><span>{{evo.g.d}}</span></li>
+    </ol>
+  </section>
+
+  <section id="games" class="game">
+    <p class="eyebrow">{{game.eyebrow}}</p>
+    <div class="game-head">
+      <h2><img src="/assets/img/lhs_logo.webp" alt="Last Human Shift" width="800" height="450"></h2>
+      <p class="tag">{{game.tag}}</p>
+    </div>
+
+    <div class="game-main">
+      <div class="trailer">
+        <video controls preload="none" playsinline poster="/assets/img/lhs_capsule_{{lang}}.webp" width="1280" height="720">
+          <source src="/assets/video/lhs_trailer.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="game-copy">
+        <p>{{game.p1}}</p>
+        <p>{{game.p2}}</p>
+        <ul class="facts">
+          <li><b>6</b>{{game.f.sections}}</li>
+          <li><b>12</b>{{game.f.workers}}</li>
+          <li><b>29</b>{{game.f.weapons}}</li>
+          <li><b>13</b>{{game.f.evolutions}}</li>
+          <li><b>75</b>{{game.f.items}}</li>
+        </ul>
+        <dl class="meta">
+          <div><dt>{{game.m.genre.k}}</dt><dd>{{game.m.genre.v}}</dd></div>
+          <div><dt>{{game.m.platform.k}}</dt><dd>{{game.m.platform.v}}</dd></div>
+          <div><dt>{{game.m.langs.k}}</dt><dd>{{game.m.langs.v}}</dd></div>
+        </dl>
+        <p class="status"><span class="dot" aria-hidden="true"></span>{{game.status}}</p>
+      </div>
+    </div>
+
+    <ul class="shots" aria-label="{{game.shots}}">
+{{shots}}
+    </ul>
+  </section>
+
+  <section id="studio" class="studio">
+    <p class="eyebrow">{{studio.eyebrow}}</p>
+    <h2>{{studio.title}}</h2>
+    <div class="studio-copy">
+      <p>{{studio.p1}}</p>
+      <p>{{studio.p2}}</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <img src="/assets/img/erg_logo.png" alt="Evolving Reality Games" width="220" height="102" loading="lazy">
+  <p>© {{year}} Evolving Reality Games</p>
+</footer>
+
+<dialog class="lightbox" aria-label="{{game.shots}}">
+  <button class="lb-close" type="button" aria-label="{{a11y.close}}">×</button>
+  <button class="lb-prev" type="button" aria-label="{{a11y.prev}}">‹</button>
+  <img alt="">
+  <button class="lb-next" type="button" aria-label="{{a11y.next}}">›</button>
+</dialog>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
