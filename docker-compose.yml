@@ -4,3 +4,15 @@ services:
     ports:
       - "127.0.0.1:3004:80"
     restart: unless-stopped
+
+  # Ziyaret sayacı: dışarı port açmaz, yalnız erg-web içindeki nginx /api/ ve /stats için buraya gider.
+  stats:
+    build: ./stats
+    environment:
+      STATS_PASSWORD: ${STATS_PASSWORD:-}
+    volumes:
+      - stats-data:/data
+    restart: unless-stopped
+
+volumes:
+  stats-data:

@@ -1,3 +1,21 @@
+// Ziyaret sayacı (stats/server.mjs): çerez yok, kimlik saklanmaz. Sayfa görünür olunca aynı origin'e tek işaret gider.
+if (navigator.sendBeacon && !navigator.webdriver) {
+  const pulse = () => {
+    const q = new URLSearchParams(location.search);
+    navigator.sendBeacon(
+      "/api/pulse",
+      JSON.stringify({
+        p: location.pathname,
+        r: document.referrer,
+        l: navigator.language,
+        s: q.get("utm_source") || q.get("ref") || "",
+      }),
+    );
+  };
+  if (document.visibilityState === "visible") pulse();
+  else document.addEventListener("visibilitychange", pulse, { once: true });
+}
+
 // Açılış animasyonu bir kez oynar ve son karede kalır (poster = son kare). Hareket azaltma açıksa hiç oynamaz.
 const hero = document.querySelector(".hero-video");
 if (hero && !matchMedia("(prefers-reduced-motion: reduce)").matches) {

@@ -9,5 +9,6 @@ RUN node build.mjs
 
 FROM nginx:1.27-alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN nginx -t
 COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 80

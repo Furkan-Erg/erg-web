@@ -11,12 +11,14 @@ pipeline {
             steps {
                 // Bağımlılık yok; eksik metin anahtarı varsa build.mjs hata verir.
                 sh 'node build.mjs'
+                sh 'node --check stats/server.mjs'
             }
         }
 
         stage('Docker build') {
             steps {
                 sh 'docker build -t erg-web:${BUILD_NUMBER} .'
+                sh 'docker build -t erg-web-stats:${BUILD_NUMBER} stats'
             }
         }
 
@@ -40,6 +42,7 @@ pipeline {
                         cd /home/furkan/erg-web
                         docker compose exec -T erg-web wget -q -O /dev/null http://127.0.0.1/
                         docker compose exec -T erg-web wget -q -O /dev/null http://127.0.0.1/tr/
+                        docker compose exec -T erg-web wget -q -O /dev/null http://127.0.0.1/api/health
                     '''
                 }
             }
@@ -48,7 +51,7 @@ pipeline {
 
     post {
         always {
-            sh 'docker rmi erg-web:${BUILD_NUMBER} || true'
+            sh 'docker rmi erg-web:${BUILD_NUMBER} erg-web-stats:${BUILD_NUMBER} || true'
             cleanWs()
         }
     }

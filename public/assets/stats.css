@@ -1,0 +1,45 @@
+/* /stats sayfası (stats/server.mjs üretir). Renkler ve yazı tipi site.css'ten gelir. */
+.stats { padding: 28px 20px 56px; }
+.stats > * { max-width: var(--wrap); margin-inline: auto; }
+.stats h1 { font-size: 30px; font-weight: 700; line-height: 1.2; }
+.stats h2 { font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.stats table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.stats th { font-weight: 500; text-align: left; }
+.stats th, .stats td { padding: 6px 0; border-top: 1px solid var(--line); }
+.stats tr:first-child > * { border-top: 0; }
+.stats .n { text-align: right; white-space: nowrap; padding-left: 14px; }
+.stats .pct { color: var(--muted); width: 3.5em; }
+
+.stats-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-bottom: 24px; }
+.stats-top nav { display: flex; gap: 6px; }
+.stats-top a { padding: 4px 14px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--muted); }
+.stats-top a:hover { color: var(--text); }
+.stats-top a[aria-current] { color: var(--text); border-color: var(--blue); }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.tiles li, .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+.tiles li { display: flex; flex-direction: column; }
+.tiles .k, .tiles .sub { color: var(--muted); font-size: 15px; }
+.tiles b { font-size: 40px; font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
+
+.panel h2 { margin-bottom: 10px; }
+.panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-top: 12px; align-items: start; }
+.panels th { max-width: 0; width: 46%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rowbar { padding-left: 12px; }
+.rowbar svg { display: block; width: 100%; height: 6px; }
+
+.chart svg { display: block; overflow: visible; }
+.chart .plot { overflow: hidden; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.chart .hit { fill: transparent; }
+.chart .day:hover .hit { fill: rgb(255 255 255 / .05); }
+.bar { fill: var(--blue); }
+.chart .day:hover .bar { fill: #a3a9f7; }
+
+.stats details { margin-top: 12px; }
+.stats summary { cursor: pointer; color: var(--muted); width: fit-content; }
+.daily { margin-top: 8px; max-width: 420px; }
+.daily thead th { color: var(--muted); font-size: 15px; }
+.empty, .note { color: var(--muted); }
+.note { font-size: 15px; margin-top: 20px; }
