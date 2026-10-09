@@ -1,5 +1,6 @@
 // Statik site üretici: src/template.html + src/strings.mjs -> dist/ (EN kökte, TR /tr/ altında).
 // Bağımlılık yok: `node build.mjs`.
+import { createHash } from "node:crypto";
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -12,6 +13,11 @@ const template = readFileSync(join(root, "src", "template.html"), "utf8");
 const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
+// /assets/ 7 gün önbellekte kalır (tarayıcı + Cloudflare); içerik değişince adres de değişsin diye özet eklenir.
+const stamp = (file) =>
+  createHash("sha256").update(readFileSync(join(root, "public", "assets", file))).digest("hex").slice(0, 8);
+const ver = { css: stamp("site.css"), js: stamp("site.js") };
+
 const lookup = (obj, path) => path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj);
 
 function shotsHtml(lang) {
@@ -23,7 +29,7 @@ function shotsHtml(lang) {
 }
 
 function render(lang) {
-  const data = { ...STRINGS[lang], year: new Date().getFullYear() };
+  const data = { ...STRINGS[lang], year: new Date().getFullYear(), ver };
   return template.replace(/\{\{([\w.]+)\}\}/g, (_, key) => {
     if (key === "shots") return shotsHtml(lang);
     const v = lookup(data, key);
